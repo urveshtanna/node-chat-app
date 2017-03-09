@@ -9,19 +9,38 @@ socket.on('disconnect',function(){
 
 socket.on('newMessage',function(message){
   var formatedCreatedAt = moment(message.createdAt).format('h:mm a');
-  var li = jQuery('<li></li>');
-  li.text(`${message.from} ${formatedCreatedAt} : ${message.body}`);
-  jQuery('#message-list').append(li);
+  var template = jQuery('#message-template').html();
+  var html = Mustache.render(template,{
+    body : message.body,
+    from : message.from,
+    createdAt : formatedCreatedAt
+  });
+
+  jQuery('#message-list').append(html);
+
+  // var li = jQuery('<li></li>');
+  // li.text(`${message.from} ${formatedCreatedAt} : ${message.body}`);
+  // jQuery('#message-list').append(li);
 });
 
 socket.on('newLocationMessage',function(message){
   var formatedCreatedAt = moment(message.createdAt).format('h:mm a');
-  var li = jQuery('<li></li>');
-  var alink = jQuery('<a target="_blank">I am here</a>')
-  li.text(`${message.from} ${formatedCreatedAt} : `);
-  alink.attr('href',message.url);
-  li.append(alink);
-  jQuery('#message-list').append(li);
+  var template = jQuery('#location-message-template').html();
+  var html = Mustache.render(template,{
+    url : message.url,
+    from : message.from,
+    createdAt : formatedCreatedAt
+  });
+
+  jQuery('#message-list').append(html);
+
+  // var formatedCreatedAt = moment(message.createdAt).format('h:mm a');
+  // var li = jQuery('<li></li>');
+  // var alink = jQuery('<a target="_blank">I am here</a>')
+  // li.text(`${message.from} ${formatedCreatedAt} : `);
+  // alink.attr('href',message.url);
+  // li.append(alink);
+  // jQuery('#message-list').append(li);
 });
 
 //Testing message
