@@ -14,15 +14,15 @@ var io = socket(server);
 io.on('connection',(socket)=>{
   console.log('New User is now connect ');
 
-  socket.emit('newMessage',{
-    "from":"urveshtanna@gmail.com",
-    "body":"Hello World",
-    'createAt' : ''
-  });
-
+//to listen on this event sent from index.js ie from web page to server
   socket.on('createMessage',(newMessage)=>{
     console.log('created new message',newMessage);
-  })
+    io.emit('newMessage',{
+      from: newMessage.from,
+      body: newMessage.body,
+      createAt : new Date().getTime()
+    });
+  });
 
   socket.on('disconnect',()=>{
       console.log('User is disconnected');
