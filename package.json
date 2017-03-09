@@ -16,7 +16,10 @@
   "dependencies": {
     "apiai": "^4.0.1",
     "express": "^4.15.2",
+    "hbs": "^4.0.1",
     "moment": "^2.17.1",
+    "request": "^2.80.0",
+    "request-promise": "^4.1.1",
     "socket.io": "^1.7.3"
   },
   "devDependencies": {

@@ -1,58 +1,38 @@
 <!DOCTYPE html>
-
 <html>
 
 <head>
   <meta charset="utf-8"/>
+  <title>Login | Truce Chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
   <link rel="stylesheet" href="/css/style.css"></link>
 </head>
 
-<body class="chat">
-
-
-  <div class="chat__sidebar">
-      <h3>Coming Soon?</h3>
-      <div class="users"></div>
-  </div>
-
-    <div class="chat__main">
-      <ol id="message-list" class="chat__messages"></ol>
-
-      <div class="chat__footer">
-        <form id="message-form">
-          <input name="input-message" type="text" placeholder="Enter your message" autofocus autocomplete="off"/>
-          <button>Send Message</button>
-        </form>
-        <button id="button-send-location">Tell My Location</button>
-      <div>
-  </div>
-  <script id="message-template" type="text/template">
-    <li class="message">
-        <div class="message__title">
-          <h4>{{from}}</h4>
-          <span>{{createdAt}}</span>
+<body class="centered-form">
+    <div class="centered-form__form">
+      <form>
+        <div class="form-field">
+          <h3>Talk with Truce</h3>
         </div>
-        <div class="message__body">
-            <p>{{body}}</p>
+        <div class="form-field">
+          <label>Mobile Number</label>
+          <input type="number" autofocus autocomplete="off" placeholder="Enter your mobile number" id="input-mobile-number"/>
         </div>
-    </li>
-  </script>
-  <script id="location-message-template" type="text/template">
-    <li class="message">
-        <div class="message__title">
-          <h4>{{from}}</h4>
-          <span>{{createdAt}}</span>
+        <div class="form-field">
+          <label>One Time Password</label>
+          <input type="number" autofocus autocomplete="off" placeholder="Enter OTP" disabled="disable" id="input-otp"/>
         </div>
-        <div class="message__body">
-            <a href="{{url}}" target="_blank">I'm here</a>
+        <div class="form-field">
+          <button id="button-verify-otp">Get OTP</button>
         </div>
-    </li>
-  </script>
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="/js/libs/jquery-3.1.1.min.js"></script>
-  <script src="/js/libs/mustache.js"></script>
-  <script src="/js/libs/moment.js"></script>
-  <script src="/js/index.js"></script>
+      <form>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/libs/jquery-3.1.1.min.js"></script>
+    <script src="/js/libs/mustache.js"></script>
+    <script src="/js/libs/moment.js"></script>
+    <script src="/js/index.js"></script>
 </body>
 
 </html>

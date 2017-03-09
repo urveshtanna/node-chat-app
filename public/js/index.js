@@ -1,104 +1,48 @@
 var socket = io();
 
-function scrollToBottom(){
+var btnRequest = jQuery('#button-verify-otp');
+var inputOTP = jQuery('#input-otp');
+var inputMobile = jQuery('#input-mobile-number');
+var isRequestOTP = true;
 
-  //Selectors
-  var messageList = jQuery('#message-list');
-  var newMessage = messageList.children('li:last-child');
+btnRequest.on('click',function(){
+    if(isRequestOTP){
+      btnRequest.attr('disabled','disabled').text('Requesting OTP...');
+      inputOTP.attr('disabled','disabled');
+      inputMobile.attr('disabled','disabled');
+      socket.emit('loginUserWithMobileNumber',inputMobile.val(),function(serverMessage,error){
+          if(error){
+            inputMobile.removeAttr('disabled');
+            btnRequest.removeAttr('disabled').text('Request OTP');
+            if(error.statusCode == 400){
+              return alert('Invalid OTP');
+            }
+            return alert(error.statusCode);
+          }
+          btnRequest.removeAttr('disabled').text('Verify OTP');
+          inputOTP.removeAttr('disabled');
+          inputOTP.attr('autofocus','autofocus');
+          isRequestOTP = false;
+      });
+    }else{
+      btnRequest.attr('disabled','disabled').text('Validating OTP...');
+      inputOTP.attr('disabled','disabled');
+      inputMobile.attr('disabled','disabled');
+      socket.emit('validateOTP',inputMobile.val(),inputOTP.val(),function(serverMessage,error){
+          if(error){
+            inputOTP.removeAttr('disabled');
+            inputMobile.removeAttr('disabled');
+            inputOTP.attr('autofocus','autofocus');
+            btnRequest.removeAttr('disabled').text('Retry Verify OTP');
+            if(error.statusCode == 400){
+              return alert('Invalid OTP');
+            }
+            return alert(error.statusCode);
+          }
 
-  var clientHeight = messageList.prop('clientHeight');
-  var scrollTop = messageList.prop('scrollTop');
-  var scrollHeight = messageList.prop('scrollHeight');
-  var newMessageHeight = newMessage.innerHeight();
-  var lastMessageHeight = newMessage.prev().innerHeight();
-
-  if(clientHeight + scrollTop + newMessageHeight + lastMessageHeight >= scrollHeight){
-    messageList.scrollTop(scrollHeight);
-  }
-}
-
-socket.on('connect',function(){
-  console.log('Connected to server');
-});
-
-socket.on('disconnect',function(){
-  console.log('Disconnected from server');
-});
-
-socket.on('newMessage',function(message){
-  var formatedCreatedAt = moment(message.createdAt).format('h:mm a');
-  var template = jQuery('#message-template').html();
-  var html = Mustache.render(template,{
-    body : message.body,
-    from : message.from,
-    createdAt : formatedCreatedAt
-  });
-
-  jQuery('#message-list').append(html);
-  scrollToBottom();
-  // var li = jQuery('<li></li>');
-  // li.text(`${message.from} ${formatedCreatedAt} : ${message.body}`);
-  // jQuery('#message-list').append(li);
-});
-
-socket.on('newLocationMessage',function(message){
-  var formatedCreatedAt = moment(message.createdAt).format('h:mm a');
-  var template = jQuery('#location-message-template').html();
-  var html = Mustache.render(template,{
-    url : message.url,
-    from : message.from,
-    createdAt : formatedCreatedAt
-  });
-
-  jQuery('#message-list').append(html);
-  scrollToBottom();
-  // var formatedCreatedAt = moment(message.createdAt).format('h:mm a');
-  // var li = jQuery('<li></li>');
-  // var alink = jQuery('<a target="_blank">I am here</a>')
-  // li.text(`${message.from} ${formatedCreatedAt} : `);
-  // alink.attr('href',message.url);
-  // li.append(alink);
-  // jQuery('#message-list').append(li);
-});
-
-//Testing message
-// socket.emit('createMessage',{
-//   from : 'Frank',
-//   body : 'Hello World!'
-// },function(serverMessage){
-//   console.log(serverMessage);
-// });
-
-jQuery('#message-form').on('submit',function(e){
-  e.preventDefault();
-  var inputMessageBox = jQuery('[name=input-message]');
-  socket.emit('createMessage',{
-    from : 'User',
-    body : inputMessageBox.val()
-  },function(serverMessage){
-    inputMessageBox.val('');
-  });
-});
-
-var btnLocation = jQuery('#button-send-location');
-btnLocation.on('click',function(){
-    if(!navigator.geolocation){
-      return alert('Geolocation not supported for your browers');
+          window.location.href = "./chat.html"
+          btnRequest.text('Verifed');
+      });
     }
-    btnLocation.attr('disabled','disabled').text('Sending Location...');
-    navigator.geolocation.getCurrentPosition(function(position){
 
-      btnLocation.removeAttr('disabled').text('Tell My Location');
-
-      socket.emit('createLocationMessage',{
-        from : 'User',
-        latitude : position.coords.latitude,
-        longitude : position.coords.longitude
-      },function(serverMessage){
-        console.log(serverMessage);
-      })
-      }, function(error){
-        btnLocation.removeAttr('disabled').text('Tell My Location');
-        alert(`Unable to fetch your location ${error}`);
-    });
 });
