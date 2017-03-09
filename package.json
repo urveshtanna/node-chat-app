@@ -14,6 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "apiai": "^4.0.1",
     "express": "^4.15.2",
     "moment": "^2.17.1",
     "socket.io": "^1.7.3"
