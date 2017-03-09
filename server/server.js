@@ -120,7 +120,7 @@ function checkforAction(io,action){
         }).then(function (response) {
             // Request was successful, use the response object at wil;
             var total = JSON.parse(response).meta.total_count;
-            io.emit('newMessage',messageUtils.generateMessage(messageUtils.ADMIN_NAME ,`You have total ${total} ongoing orders`));
+            io.emit('newMessage',messageUtils.generateMessage(messageUtils.ADMIN_NAME ,`You have total ${JSON.parse(response).payload.orders.length} ongoing orders`));
             for (var i = 0; i < JSON.parse(response).payload.orders.length; i++) {
               io.emit('newOrderMessage',messageUtils.generateOrderMessage(messageUtils.ADMIN_NAME ,JSON.parse(response).meta.total_count, JSON.parse(response).payload.orders[i]));
             }
