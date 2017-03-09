@@ -20,13 +20,15 @@ io.on('connection',(socket)=>{
   socket.emit('newMessage', messageUtils.generateMessage(messageUtils.ADMIN_NAME,messageUtils.WELCOME_MESSAGE));
 
   //socket.broadcast.emit to exist one saying new user is Connected
-  socket.broadcast.emit('newMessage',generateMessage(messageUtils.ADMIN_NAME,messageUtils.NEW_USER_MESSAGE));
+  socket.broadcast.emit('newMessage',messageUtils.generateMessage(messageUtils.ADMIN_NAME,messageUtils.NEW_USER_MESSAGE));
 
   //to listen on this event sent from index.js ie from web page to server
-  socket.on('createMessage',(newMessage)=>{
+  socket.on('createMessage',(newMessage,callback)=>{
 
     console.log('created new message',newMessage);
-    io.emit('newMessage',generateMessage(newMessage.from ,newMessage.body));
+    io.emit('newMessage',messageUtils.generateMessage(newMessage.from ,newMessage.body));
+
+    callback('Received Dude');
     //To send message to other user not the current user
     // socket.broadcast.emit('newMessage',{
     //   from : newMessage.from,
