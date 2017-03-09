@@ -8,17 +8,17 @@ socket.on('disconnect',function(){
 });
 
 socket.on('newMessage',function(message){
-  console.log('New message',message);
+  var formatedCreatedAt = moment(message.createdAt).format('h:mm a');
   var li = jQuery('<li></li>');
-  li.text(`${message.from}: ${message.body}`);
+  li.text(`${message.from} ${formatedCreatedAt} : ${message.body}`);
   jQuery('#message-list').append(li);
 });
 
 socket.on('newLocationMessage',function(message){
-  console.log('New message',message);
+  var formatedCreatedAt = moment(message.createdAt).format('h:mm a');
   var li = jQuery('<li></li>');
   var alink = jQuery('<a target="_blank">I am here</a>')
-  li.text(`${message.from}: `);
+  li.text(`${message.from} ${formatedCreatedAt} : `);
   alink.attr('href',message.url);
   li.append(alink);
   jQuery('#message-list').append(li);
