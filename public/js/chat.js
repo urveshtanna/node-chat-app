@@ -87,7 +87,8 @@ socket.on('newOrderMessage',function(message){
    var html = Mustache.render(template,{
      order_details : orderDetail,
      product_name : orderDetail.product_name,
-     quantity : `${orderDetail.ordered_quantity} ${orderDetail.unit_name} `
+     quantity : orderDetail.ordered_quantity,
+     product_img : orderDetail.product_img_href
    });
    //scrollToBottom();
    jQuery('#message-list').append(html);

@@ -6,21 +6,23 @@
   <title>Login | Truce Chat</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
   <link rel="stylesheet" href="/css/style.css"></link>
+  <link rel="icon" href="/image/truce-logo.png">
 </head>
 
 <body class="centered-form">
     <div class="centered-form__form">
       <form>
         <div class="form-field">
-          <h3>Talk with Truce</h3>
+          <img width="80" height="80" src="/image/truce-logo.png" alt="Truce Logo" style="width:64px;height:64px;vertical-align:middle" />
+          <span style="font-size:24px;bold,etc.;">Truce Bot</span>
         </div>
         <div class="form-field">
           <label>Mobile Number</label>
-          <input type="number" autofocus autocomplete="off" placeholder="Enter your mobile number" id="input-mobile-number"/>
+          <input type="number" autofocus autocomplete="on" placeholder="Enter your mobile number" id="input-mobile-number" pattern="[0-9]{9}" maxlength="10"/>
         </div>
         <div class="form-field">
           <label>One Time Password</label>
-          <input type="number" autofocus autocomplete="off" placeholder="Enter OTP" disabled="disable" id="input-otp"/>
+          <input type="text" autofocus autocomplete="off" placeholder="Enter OTP" disabled="disable" id="input-otp" maxlength="4"/>
         </div>
         <div class="form-field">
           <button id="button-verify-otp">Get OTP</button>

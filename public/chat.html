@@ -7,6 +7,7 @@
   <title>Chat | Truce Chat</title>
   <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no"/>
   <link rel="stylesheet" href="/css/style.css"></link>
+  <link rel="icon" href="/image/truce-logo.png">
 </head>
 
 <body class="chat">
@@ -69,9 +70,11 @@
     </ul> -->
    <ul> {{#order_details}}
      <div>
-        <img height="80" width="80" >
-        <h4>{{product_name}}</h4>
-        <span>{{quantity}}</span>
+        <div class="form-field">
+          <img width="80" height="80" src="{{product_img}}" alt="Product Image" style="width:64px;height:64px;vertical-align:middle" />
+          <h4>{{product_name}}</h4>
+          <span>{{quantity}}</span>
+        </div>
       <div>
    {{/order_details}}
    </ul>
