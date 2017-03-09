@@ -14,6 +14,16 @@ socket.on('newMessage',function(message){
   jQuery('#message-list').append(li);
 });
 
+socket.on('newLocationMessage',function(message){
+  console.log('New message',message);
+  var li = jQuery('<li></li>');
+  var alink = jQuery('<a target="_blank">I am here</a>')
+  li.text(`${message.from}: `);
+  alink.attr('href',message.url);
+  li.append(alink);
+  jQuery('#message-list').append(li);
+});
+
 //Testing message
 // socket.emit('createMessage',{
 //   from : 'Frank',
@@ -40,10 +50,18 @@ btnLocation.on('click',function(){
     }
     btnLocation.attr('disabled','disabled').text('Sending Location...');
     navigator.geolocation.getCurrentPosition(function(position){
+
       btnLocation.removeAttr('disabled').text('Tell My Location');
-      console.log(position);
-    }, function(error){
-      btnLocation.removeAttr('disabled').text('Tell My Location');
-      alert(`Unable to fetch your location ${error}`);
+
+      socket.emit('createLocationMessage',{
+        from : 'User',
+        latitude : position.coords.latitude,
+        longitude : position.coords.longitude
+      },function(serverMessage){
+        console.log(serverMessage);
+      })
+      }, function(error){
+        btnLocation.removeAttr('disabled').text('Tell My Location');
+        alert(`Unable to fetch your location ${error}`);
     });
 });
