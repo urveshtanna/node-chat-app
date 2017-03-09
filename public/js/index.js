@@ -24,10 +24,26 @@ socket.on('newMessage',function(message){
 
 jQuery('#message-form').on('submit',function(e){
   e.preventDefault();
+  var inputMessageBox = jQuery('[name=input-message]');
   socket.emit('createMessage',{
     from : 'User',
-    body : jQuery('[name=input-message]').val()
+    body : inputMessageBox.val()
   },function(serverMessage){
-    console.log(serverMessage);
+    inputMessageBox.val('');
   });
+});
+
+var btnLocation = jQuery('#button-send-location');
+btnLocation.on('click',function(){
+    if(!navigator.geolocation){
+      return alert('Geolocation not supported for your browers');
+    }
+    btnLocation.attr('disabled','disabled').text('Sending Location...');
+    navigator.geolocation.getCurrentPosition(function(position){
+      btnLocation.removeAttr('disabled').text('Tell My Location');
+      console.log(position);
+    }, function(error){
+      btnLocation.removeAttr('disabled').text('Tell My Location');
+      alert(`Unable to fetch your location ${error}`);
+    });
 });

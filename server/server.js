@@ -28,7 +28,7 @@ io.on('connection',(socket)=>{
     console.log('created new message',newMessage);
     io.emit('newMessage',messageUtils.generateMessage(newMessage.from ,newMessage.body));
 
-    callback('Received Dude');
+    callback('Received on server');
     //To send message to other user not the current user
     // socket.broadcast.emit('newMessage',{
     //   from : newMessage.from,
