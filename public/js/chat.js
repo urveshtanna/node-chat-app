@@ -71,7 +71,7 @@ socket.on('newOrderMessage',function(message){
     created_on : moment(message.order.created_at).format('DD MMMM YY'),
   });
   jQuery('#message-list').append(html);
-  scrollToBottom();
+  //scrollToBottom();
 
   // for (var i = 0; i < JSON.parse(JSON.stringify(message.order)).order_details.length; i++) {
   //   var template = jQuery('#order-detail-message-template').html();

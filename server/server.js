@@ -61,7 +61,7 @@ io.on('connection',(socket)=>{
 
     var options = {
         method: 'POST',
-        uri: 'http://dev.api.truce.co.in/api/v1/auth/bb/get/verify_otp/',
+        uri: `${CONSTANTS.BASE_URL}auth/bb/get/verify_otp/`,
         body: {
             login_id: mobileNumber
         },
@@ -84,7 +84,7 @@ io.on('connection',(socket)=>{
     console.log('Mobile Number',JSON.stringify(mobileNumber));
     var options = {
         method: 'POST',
-        uri: 'http://dev.api.truce.co.in/api/v1/auth/bb/login_or_register/buyer/',
+        uri: `${CONSTANTS.BASE_URL}auth/bb/login_or_register/buyer/`,
         body: {
           mobile_number : mobileNumber,
           otp : otp
@@ -109,13 +109,13 @@ io.on('connection',(socket)=>{
 
 function checkforAction(io,action){
     switch (action) {
-      case "order_status":
+      case CONSTANTS.ACTION_ORDER_OPEN:
       request({
           headers: {
-            'X-Auth-Token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX3VpZCI6ImU4ZjJiOWUyLTFiMzktNDcxZi1iMGY4LTRkZGIwMTUwNDIyNiIsImdyb3VwIjpbMTYsMTVdLCJ1aWQiOjE1MCwiYnV5ZXJfdWlkIjoiNDkxNjUwZmEtZGJlMC00MzI5LWIyNTUtMjMyOWM0YmY2YzFjIiwic2VsbGVyX3VpZCI6IjYxMGIwODViLWRkMGYtNDM5Mi05NGQ0LTU4Zjc5ZDdhNzVkYSIsInRpbWUiOjM0NzQ3NDgwfQ.mHtWdfic7CSeXSaVoK6TAQPeF2_rnOUk0XVkFf8381M',
+            'X-Auth-Token': `${CONSTANTS.AUTH_TOKEN}`,
             json : true
           },
-          uri: 'http://dev.api.truce.co.in/api/v1/requirements/app/buy_order/all/?status=open&start=1&limit=10',
+          uri: `${CONSTANTS.BASE_URL}requirements/app/buy_order/all/?status=open`,
           method: 'GET'
         }).then(function (response) {
             // Request was successful, use the response object at wil;
@@ -131,6 +131,28 @@ function checkforAction(io,action){
               console.log(err);
         });
         break;
+        case CONSTANTS.ACTION_ORDER_CLOSED:
+        request({
+            headers: {
+              'X-Auth-Token': `${CONSTANTS.AUTH_TOKEN}`,
+              json : true
+            },
+            uri: `${CONSTANTS.BASE_URL}requirements/app/buy_order/all/?status=closed`,
+            method: 'GET'
+          }).then(function (response) {
+              // Request was successful, use the response object at wil;
+              var total = JSON.parse(response).meta.total_count;
+              io.emit('newMessage',messageUtils.generateMessage(messageUtils.ADMIN_NAME ,`You had ${JSON.parse(response).payload.orders.length} past orders`));
+              for (var i = 0; i < JSON.parse(response).payload.orders.length; i++) {
+                io.emit('newOrderMessage',messageUtils.generateOrderMessage(messageUtils.ADMIN_NAME ,JSON.parse(response).meta.total_count, JSON.parse(response).payload.orders[i]));
+              }
+
+          })
+          .catch(function (err) {
+              // Something bad happened, handle the error
+                console.log(err);
+          });
+          break;
       default:
 
     }
