@@ -40,7 +40,7 @@ btnRequest.on('click',function(){
             return alert(error.statusCode);
           }
 
-          window.location.href = "./chat.html"
+          window.location.href = `./chat.html?${serverMessage}`
           btnRequest.text('Verifed');
       });
     }

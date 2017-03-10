@@ -68,14 +68,18 @@
           <span>{{quantity}}</span>
         </div>
     </ul> -->
-   <ul> {{#order_details}}
-     <div>
-        <div class="form-field">
-          <img width="80" height="80" src="{{product_img}}" alt="Product Image" style="width:64px;height:64px;vertical-align:middle" />
-          <h4>{{product_name}}</h4>
-          <span>{{quantity}}</span>
+   <ul class="chat__order"> {{#order_details}}
+        <div class="card">
+          <img width="80" height="80" src="{{product_img}}" alt="Product Image" style="
+          width: 80px;
+          height: 80px;
+          display: block;
+          padding-bottom: 8px;
+          margin: auto;
+          padding-top: 8px;" />
+          <label style="font-size=50%;">{{product_name}}</label>
+          <label style="font-size=25%;">{{quantity}}</label>
         </div>
-      <div>
    {{/order_details}}
    </ul>
   </script>

@@ -19,7 +19,7 @@ h3 {
 
 button {
   border: none;
-  background: #265f82;
+  background: #3F51B5;
   color: white;
   cursor: pointer;
   padding: 10px;
@@ -28,14 +28,14 @@ button {
 
 button:hover {
   border: none;
-  background: #1F4C69;
+  background: #303F9F;
   color: white;
   padding: 10px;
 }
 
 button:disabled {
   cursor: default;
-  background: #698ea5;
+  background: #7986CB;
 }
 
 .centered-form {
@@ -44,12 +44,12 @@ button:disabled {
   height: 100vh;
   width: 100vw;
   justify-content: center;
-  background: -moz-linear-gradient(125deg, rgba(39,107,130,1) 0%, rgba(49,84,129,1) 100%); /* ff3.6+ */
-  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, rgba(49,84,129,1)), color-stop(100%, rgba(39,107,130,1))); /* safari4+,chrome */
-  background: -webkit-linear-gradient(125deg, rgba(39,107,130,1) 0%, rgba(49,84,129,1) 100%); /* safari5.1+,chrome10+ */
-  background: -o-linear-gradient(125deg, rgba(39,107,130,1) 0%, rgba(49,84,129,1) 100%); /* opera 11.10+ */
-  background: -ms-linear-gradient(125deg, rgba(39,107,130,1) 0%, rgba(49,84,129,1) 100%); /* ie10+ */
-  background: linear-gradient(325deg, rgba(39,107,130,1) 0%, rgba(49,84,129,1) 100%); /* w3c */
+  background: -moz-linear-gradient(125deg, rgba(63,81,181,1) 0%, rgba(63,81,181,1) 100%); /* ff3.6+ */
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, rgba(63,81,181,1)), color-stop(100%, rgba(63,81,181,1))); /* safari4+,chrome */
+  background: -webkit-linear-gradient(125deg, rgba(63,81,181,1) 0%, rgba(63,81,181,1) 100%); /* safari5.1+,chrome10+ */
+  background: -o-linear-gradient(125deg, rgba(63,81,181,1) 0%, rgba(63,81,181,1) 100%); /* opera 11.10+ */
+  background: -ms-linear-gradient(125deg, rgba(63,81,181,1) 0%, rgba(63,81,181,1) 100%); /* ie10+ */
+  background: linear-gradient(325deg, rgba(63,81,181,1) 0%, rgba(63,81,181,1) 100%); /* w3c */
 }
 
 .centered-form__form {
@@ -87,12 +87,12 @@ button:disabled {
   overflow-y: scroll;
   width: 260px;
   height: 100vh;
-  background: -moz-linear-gradient(125deg, rgba(39,107,130,1) 0%, rgba(49,84,129,1) 100%); /* ff3.6+ */
-  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, rgba(49,84,129,1)), color-stop(100%, rgba(39,107,130,1))); /* safari4+,chrome */
-  background: -webkit-linear-gradient(125deg, rgba(39,107,130,1) 0%, rgba(49,84,129,1) 100%); /* safari5.1+,chrome10+ */
-  background: -o-linear-gradient(125deg, rgba(39,107,130,1) 0%, rgba(49,84,129,1) 100%); /* opera 11.10+ */
-  background: -ms-linear-gradient(125deg, rgba(39,107,130,1) 0%, rgba(49,84,129,1) 100%); /* ie10+ */
-  background: linear-gradient(325deg, rgba(39,107,130,1) 0%, rgba(49,84,129,1) 100%); /* w3c */
+  background: -moz-linear-gradient(125deg, rgba(63,81,181,1) 0%, rgba(63,81,181,1) 100%); /* ff3.6+ */
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, rgba(63,81,181,1)), color-stop(100%, rgba(63,81,181,1))); /* safari4+,chrome */
+  background: -webkit-linear-gradient(125deg, rgba(63,81,181,1) 0%, rgba(63,81,181,1) 100%); /* safari5.1+,chrome10+ */
+  background: -o-linear-gradient(125deg, rgba(63,81,181,1) 0%, rgba(63,81,181,1) 100%); /* opera 11.10+ */
+  background: -ms-linear-gradient(125deg, rgba(63,81,181,1) 0%, rgba(63,81,181,1) 100%); /* ie10+ */
+  background: linear-gradient(325deg, rgba(63,81,181,1) 0%, rgba(63,81,181,1) 100%); /* w3c */
 }
 
 .chat__sidebar h3 {
@@ -123,6 +123,7 @@ button:disabled {
 .chat__messages {
   flex-grow: 1;
   overflow-y: scroll;
+  background: #FAFAFA;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -170,6 +171,35 @@ button:disabled {
 
 .message__title span {
   color: #999;
+}
+
+.chat__order   {
+  display: inline-flex;;
+  list-style-type: none;
+  align-self: center;
+}
+
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    padding: 8px;
+    align-self: center;
+    height: 150px;
+    width: 120px;
+    background: #FFFFFF;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+    padding: 2px 16px;
 }
 
 @media (max-width: 600px) {
