@@ -44,12 +44,12 @@ button:disabled {
   height: 100vh;
   width: 100vw;
   justify-content: center;
-  background: -moz-linear-gradient(125deg, rgba(63,81,181,1) 0%, rgba(63,81,181,1) 100%); /* ff3.6+ */
-  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, rgba(63,81,181,1)), color-stop(100%, rgba(63,81,181,1))); /* safari4+,chrome */
-  background: -webkit-linear-gradient(125deg, rgba(63,81,181,1) 0%, rgba(63,81,181,1) 100%); /* safari5.1+,chrome10+ */
-  background: -o-linear-gradient(125deg, rgba(63,81,181,1) 0%, rgba(63,81,181,1) 100%); /* opera 11.10+ */
-  background: -ms-linear-gradient(125deg, rgba(63,81,181,1) 0%, rgba(63,81,181,1) 100%); /* ie10+ */
-  background: linear-gradient(325deg, rgba(63,81,181,1) 0%, rgba(63,81,181,1) 100%); /* w3c */
+  background: -moz-linear-gradient(125deg, rgba(250,250,250,1) 0%, rgba(250,250,250,1) 100%); /* ff3.6+ */
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, rgba(250,250,250,1)), color-stop(100%, rgba(250,250,250,1))); /* safari4+,chrome */
+  background: -webkit-linear-gradient(125deg, rgba(250,250,250,1) 0%, rgba(250,250,250,1) 100%); /* safari5.1+,chrome10+ */
+  background: -o-linear-gradient(125deg, rgba(250,250,250,1) 0%, rgba(250,250,250,1) 100%); /* opera 11.10+ */
+  background: -ms-linear-gradient(125deg, rgba(250,250,250,1) 0%, rgba(250,250,250,1) 100%); /* ie10+ */
+  background: linear-gradient(325deg, rgba(250,250,250,1) 0%, rgba(250,250,250,1) 100%); /* w3c */
 }
 
 .centered-form__form {
@@ -179,17 +179,43 @@ button:disabled {
   align-self: center;
 }
 
+.chat__button_order   {
+  border: none;
+  background: #3F51B5;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  position: relative;
+  bottom: 20px;
+  right: 20px;
+  transition: background .3s ease;
+}
+
+chat__button_order:hover {
+  border: none;
+  background: #303F9F;
+  color: white;
+  padding: 10px;
+}
+
+chat__button_order:disabled {
+  cursor: default;
+  background: #7986CB;
+}
+
 .card {
     /* Add shadows to create the "card" effect */
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     padding: 8px;
     align-self: center;
-    height: 150px;
-    width: 120px;
+    height: 180px;
+    width: 150px;
     background: #FFFFFF;
     margin-left: 8px;
     margin-right: 8px;
+    overflow-x: scroll;
+    position: relative;
 }
 
 /* On mouse-over, add a deeper shadow */
@@ -201,6 +227,118 @@ button:disabled {
 .container {
     padding: 2px 16px;
 }
+
+.centered-card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    padding: 16px;
+    align-self: center;
+    height: 350px;
+    width: 300px;
+    background: #FFFFFF;
+    margin-left: 8px;
+    margin-right: 8px;
+    position: relative;
+}
+
+.card-background-img{
+  width: 100%;
+  height: 40%;
+  display: block;
+  padding-bottom: 8px;
+  margin: auto;
+  padding-top: 8px;
+}
+
+/* On mouse-over, add a deeper shadow */
+.centered-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.ripple,.ripple:before,.ripple:after {
+  display:block;
+  border-radius:2px;
+  width:2px;
+  height:2px;
+  -webkit-animation:rip 6s infinite ease-out;
+  -moz-animation:rip 6s infinite ease-out;
+}
+.ripple {
+  position:absolute;
+  z-index:-1;
+  width: 100%;
+  top:40px;
+  font-size: medium;
+  background: white;
+  height: 50;
+  color: blue;
+  left:15px;
+}
+.ripple:before,.ripple:after {
+  content:'';
+  position:absolute;
+}
+.ripple:before {-webkit-animation-delay:.2s;-moz-animation-delay:.2s;top:5px;left:25px;}
+.ripple:after {-webkit-animation-delay:.8s;-moz-animation-delay:.8s;top:25px;left:0;}
+@-webkit-keyframes rip
+{
+  0%  {
+    box-shadow:0 0 0 0 transparent,
+               0 0 0 0 transparent,
+               0 0 0 0 transparent,
+               0 0 0 0 transparent;
+  }
+  15%  {
+    box-shadow:0 0 0 0 #45c2c5,
+               0 0 0 0 rgba(255,255,255,0.4),
+               0 0 0 0 #45c2c5,
+               0 0 0 0 rgba(0,0,0,0.08);
+  }
+  100% {
+    box-shadow:0 0 40px 200px #45c2c5,
+               0 0 10px 210px transparent,
+               0 0 30px 220px #45c2c5,
+               0 0 5px 230px transparent;
+  }
+}
+@-moz-keyframes rip
+{
+  0%  {
+    box-shadow:0 0 0 0 transparent,
+               0 0 0 0 transparent,
+               0 0 0 0 transparent,
+               0 0 0 0 transparent;
+  }
+  15%  {
+    box-shadow:0 0 0 0 #45c2c5,
+               0 0 0 0 rgba(255,255,255,0.4),
+               0 0 0 0 #45c2c5,
+               0 0 0 0 rgba(0,0,0,0.08);
+  }
+  100% {
+    box-shadow:0 0 40px 200px #45c2c5,
+               0 0 10px 210px transparent,
+               0 0 30px 220px #45c2c5,
+               0 0 5px 230px transparent;
+  }
+}
+
+.message__order_title{
+  display: flex;
+  margin-bottom: 5px;
+  background: #4CAF50;
+}
+
+.message__order_title h4 {
+  font-weight: 600;
+  margin-right: 10px;
+  color: white;
+}
+
+.message__order_title span {
+  color: #999;
+}
+
 
 @media (max-width: 600px) {
   * {

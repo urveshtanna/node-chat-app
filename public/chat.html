@@ -53,10 +53,12 @@
 
   <script id="order-message-template" type="text/template">
     <li class="message">
-        <div class="message__title">
+      <ul>
+        <div class="message__order_title">
           <h4>{{order_id}}</h4>
           <span>{{created_on}}</span>
         </div>
+      </ul>
     </li>
   </script>
 
@@ -70,15 +72,15 @@
     </ul> -->
    <ul class="chat__order"> {{#order_details}}
         <div class="card">
-          <img width="80" height="80" src="{{product_img}}" alt="Product Image" style="
-          width: 80px;
-          height: 80px;
-          display: block;
-          padding-bottom: 8px;
-          margin: auto;
-          padding-top: 8px;" />
-          <label style="font-size=50%;">{{product_name}}</label>
-          <label style="font-size=25%;">{{quantity}}</label>
+          <div style="height: 80%;">
+          <img width="80" height="80" src="{{product_img_href}}" alt="Product Image" class="card-background-img" />
+          <div style="text-align: center;">
+            <label>{{product_name}}</label><br>
+            <label>{{ordered_quantity}}</label>
+            <label>{{unit_name}}</label>
+          </div>
+        </div>
+          <button class="ripple">Show Detail</button>
         </div>
    {{/order_details}}
    </ul>

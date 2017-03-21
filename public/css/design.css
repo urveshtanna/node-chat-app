@@ -1,0 +1,281 @@
+body {
+  background: #e2e1e0;
+}
+
+.wrapper {
+  background-color: #fff;
+  box-sizing: border-box;
+  max-width: 500px;
+  min-width: 250px;
+  margin: 10px auto;
+  padding: 0;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+@media screen and (max-width:580px){
+  .wrapper{
+    margin: 10px 40px;
+  }
+}
+.content {
+  padding: 15px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.demo-card-wide.mdl-card {
+  width: 340px;
+  position: absolute;
+  height: 218px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: end;
+  margin: auto;
+}
+.demo-card-wide > .mdl-card__title {
+  color: #fff;
+  height: 176px;
+  background: url('../image/white-banner.jpg') center / cover;
+}
+.demo-card-wide > .mdl-card__menu {
+  color: #fff;
+}
+
+.container {
+  width: 100%;
+  height: 56px;
+  position: relative;
+  border: transparent solid 1px;
+}
+
+.form-field {
+  margin: 20px 0;
+}
+
+.form-field > * {
+    width: 70%;
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 7px;
+}
+
+.form-field input, .form-field select {
+  border: 1px solid #e1e1e1;
+  padding: 10px;
+}
+
+.circle {
+  position: relative;
+  overflow: hidden;
+  width: 48px;
+  height: 48px;
+  margin: 4px;
+  background-color: #8BC34A;
+  display: block;
+  border-radius: 24px;
+
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+
+  font-size:0;
+  box-sizing: border-box;
+
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+
+  transform: translate3d(-14px, 28px, 0);
+  transition: all 500ms ease-in-out;
+}
+
+.circle:hover{
+  background-color:#9CCC65;
+}
+.circle.active:hover{
+  background-color:#8BC34A;
+}
+
+.circle .main {
+  visibility: visible;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 12px;
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  font-size: 20px;
+  line-height: 24px;
+
+  color: #FFF;
+  transition: all 200ms ease-in-out 300ms;
+}
+
+.circle.active {
+  padding: 4px;
+  width: 100%;
+  height: calc(100% + 2px);
+  margin: -1px;
+  border-radius: 2px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  box-shadow: none;
+  transform: translate3d(0, 0, 0);
+}
+
+.circle .close {
+  border-radius: 20px;
+  visibility: hidden;
+  margin: 4px;
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  text-align: center;
+  position: absolute;
+  font-size: 20px;
+  line-height: 40px;
+  left: 4px;
+  right: 0;
+
+  color: #FFF;
+
+  opacity: 0;
+  transition: all 200ms ease-in-out;
+}
+
+.circle.active .close {
+  visibility: visible;
+  left: 4px;
+  opacity:1;
+  transition: opacity, left, visibility 200ms ease-in-out 300ms;
+  transition: background-color 200ms ease-in-out;
+}
+
+.circle.active.facebook {
+  background-color:#4c4c4c;
+}
+.circle.active.twitter {
+  background-color:#00aced;
+}
+.circle.active.google {
+  background-color:#dd4b39;
+}
+
+.close:hover {
+    background-color: rgba(255, 255, 255, .2);
+}
+
+.circle.active .main {
+  visibility: hidden;
+  left: 4px;
+  opacity:0;
+  transition: all 200ms ease-in-out;
+}
+
+.social {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  color: #FFF;
+  font-size: 20px;
+  height:40px;
+  left: 200%;
+  top: 8px;
+  display: inline-block;
+
+  width: 60%;
+
+  vertical-align: middle;
+
+  text-align: justify;
+  -ms-text-justify: distribute-all-lines;
+  text-justify: distribute-all-lines;
+  transition: left, visibility, opacity 200ms ease-in-out 400ms;
+}
+
+.circle.active .social{
+  visibility: visible;
+  opacity: 1;
+  left: 20%;
+}
+
+.btn {
+  border-radius: 50%;
+  vertical-align: top;
+  margin: auto;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  zoom: 1;
+  transition: background-color 500ms ease-in-out;
+}
+
+.social:after {
+    content: '';
+    width: 100%;
+    display: inline-block;
+    font-size: 0;
+    line-height: 0
+}
+
+.facebook .facebookbtn, .google .googlebtn{
+  background-color: rgba(255, 255, 255, .2);
+}
+.twitter .twitterbtn {
+  background-color: rgba(255, 255, 255, .4);
+}
+
+.centered-form {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  background: -moz-linear-gradient(125deg, rgba(250,250,250,1) 0%, rgba(250,250,250,1) 100%); /* ff3.6+ */
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, rgba(250,250,250,1)), color-stop(100%, rgba(250,250,250,1))); /* safari4+,chrome */
+  background: -webkit-linear-gradient(125deg, rgba(250,250,250,1) 0%, rgba(250,250,250,1) 100%); /* safari5.1+,chrome10+ */
+  background: -o-linear-gradient(125deg, rgba(250,250,250,1) 0%, rgba(250,250,250,1) 100%); /* opera 11.10+ */
+  background: -ms-linear-gradient(125deg, rgba(250,250,250,1) 0%, rgba(250,250,250,1) 100%); /* ie10+ */
+  background: linear-gradient(325deg, rgba(250,250,250,1) 0%, rgba(250,250,250,1) 100%); /* w3c */
+}
+
+.centered-card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    padding: 16px;
+    align-self: center;
+    height: 350px;
+    width: 300px;
+    background: #FFFFFF;
+    margin-left: 8px;
+    margin-right: 8px;
+    position: relative;
+}
+
+.centered-form__form {
+  background: rgba(250, 250, 250, 0.9);
+  border: 1px solid #e1e1e1;
+  border-radius: 5px;
+  padding: 0px 20px;
+  margin: 20px;
+  width: 230px;
+}
+
+.demo-layout-transparent {
+  background: url('../image/white-banner.jpg') center / cover;
+}
+.demo-layout-transparent .mdl-layout__header,
+.demo-layout-transparent .mdl-layout__drawer-button {
+  /* This background is dark, so we set text to white. Use 87% black instead if
+     your background is light. */
+  color: white;
+}

@@ -84,11 +84,13 @@ socket.on('newOrderMessage',function(message){
   // }
   var template = jQuery('#order-detail-message-template').html();
   var orderDetail = JSON.parse(JSON.stringify(message.order)).order_details;
+  console.log(orderDetail);
    var html = Mustache.render(template,{
      order_details : orderDetail,
+     ordered_quantity : orderDetail.ordered_quantity,
+     unit_name : orderDetail.unit_name,
      product_name : orderDetail.product_name,
-     quantity : orderDetail.ordered_quantity,
-     product_img : orderDetail.product_img_href
+     product_img_href : orderDetail.product_img_href
    });
    //scrollToBottom();
    jQuery('#message-list').append(html);

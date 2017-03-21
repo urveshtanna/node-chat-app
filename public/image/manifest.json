@@ -1,0 +1,12 @@
+{
+  "name": "Truce Web App",
+  "short_name": "Truce",
+  "theme_color": "#f44235",
+  "background_color": "#e0e0e0",
+  "display": "standalone",
+  "orientation": "portrait",
+  "Scope": "/",
+  "start_url": "/",
+  "icons": null,
+  "splash_pages": null
+}
