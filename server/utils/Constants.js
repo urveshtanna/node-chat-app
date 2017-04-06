@@ -1,8 +1,8 @@
 var ACTION_ORDER_OPEN = "order_status_open";
 var ACTION_ORDER_CLOSED = "order_status_closed";
 var ACTION_WELCOME = "intent.welcome"
-var BASE_URL = 'http://dev.api.truce.co.in/api/v1/';
-var AUTH_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX3VpZCI6ImU4ZjJiOWUyLTFiMzktNDcxZi1iMGY4LTRkZGIwMTUwNDIyNiIsImdyb3VwIjpbMTYsMTVdLCJ1aWQiOjE1MCwiYnV5ZXJfdWlkIjoiNDkxNjUwZmEtZGJlMC00MzI5LWIyNTUtMjMyOWM0YmY2YzFjIiwic2VsbGVyX3VpZCI6IjYxMGIwODViLWRkMGYtNDM5Mi05NGQ0LTU4Zjc5ZDdhNzVkYSIsInRpbWUiOjM0NzQ3NDgwfQ.mHtWdfic7CSeXSaVoK6TAQPeF2_rnOUk0XVkFf8381M'
+var BASE_URL = '';
+var AUTH_TOKEN = ''
 
 module.exports = {
   ACTION_ORDER_OPEN,

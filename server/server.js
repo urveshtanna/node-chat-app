@@ -58,48 +58,49 @@ io.on('connection',(socket)=>{
   //to listen on this event sent from index.js ie from web page to server
   socket.on('loginUserWithMobileNumber',(mobileNumber,callback)=>{
     console.log('Mobile Number',JSON.stringify(mobileNumber));
+    callback('Request Sent');
+    // var options = {
+    //     method: 'POST',
+    //     uri: `${CONSTANTS.BASE_URL}auth/bb/get/verify_otp/`,
+    //     body: {
+    //         login_id: mobileNumber
+    //     },
+    //     json: true // Automatically stringifies the body to JSON
+    // };
 
-    var options = {
-        method: 'POST',
-        uri: `${CONSTANTS.BASE_URL}auth/bb/get/verify_otp/`,
-        body: {
-            login_id: mobileNumber
-        },
-        json: true // Automatically stringifies the body to JSON
-    };
-
-    request(options).then(function (response) {
-          // Request was successful, use the response object at wil;
-          callback('Request Sent');
-      })
-      .catch(function (err) {
-          // Something bad happened, handle the error
-            console.log(err);
-            callback(undefined,err);
-      });
+    // request(options).then(function (response) {
+    //       // Request was successful, use the response object at wil;
+    //       callback('Request Sent');
+    //   })
+    //   .catch(function (err) {
+    //       // Something bad happened, handle the error
+    //         console.log(err);
+    //         callback(undefined,err);
+    //   });
   });
 
   //to listen on this event sent from index.js ie from web page to server
   socket.on('validateOTP',(mobileNumber,otp,callback)=>{
     console.log('Mobile Number',JSON.stringify(mobileNumber));
-    var options = {
-        method: 'POST',
-        uri: `${CONSTANTS.BASE_URL}auth/bb/login_or_register/buyer/`,
-        body: {
-          mobile_number : mobileNumber,
-          otp : otp
-        },
-        json: true // Automatically stringifies the body to JSON
-    };
-    console.log(options);
-    request(options).then(function (response) {
-          // Request was successful, use the response object at wil;
-          callback('Request Sent');
-      })
-      .catch(function (err) {
-          // Something bad happened, handle the error
-            callback(undefined,err);
-      });
+    callback('Request Sent');
+    // var options = {
+    //     method: 'POST',
+    //     uri: `${CONSTANTS.BASE_URL}auth/bb/login_or_register/buyer/`,
+    //     body: {
+    //       mobile_number : mobileNumber,
+    //       otp : otp
+    //     },
+    //     json: true // Automatically stringifies the body to JSON
+    // };
+    // console.log(options);
+    // request(options).then(function (response) {
+    //       // Request was successful, use the response object at wil;
+    //       callback('Request Sent');
+    //   })
+    //   .catch(function (err) {
+    //       // Something bad happened, handle the error
+    //         callback(undefined,err);
+    //   });
   });
 
   socket.on('disconnect',()=>{
@@ -110,55 +111,55 @@ io.on('connection',(socket)=>{
 function checkforAction(io,action){
     switch (action) {
       case CONSTANTS.ACTION_ORDER_OPEN:
-      request({
-          headers: {
-            'X-Auth-Token': `${CONSTANTS.AUTH_TOKEN}`,
-            json : true
-          },
-          uri: `${CONSTANTS.BASE_URL}requirements/app/buy_order/all/?status=open`,
-          method: 'GET'
-        }).then(function (response) {
-            // Request was successful, use the response object at wil;
-            var total = JSON.parse(response).meta.total_count;
-            if(JSON.parse(response).payload.orders.length > 0){
-              io.emit('newMessage',messageUtils.generateMessage(messageUtils.ADMIN_NAME ,`Showing your open orders`));
-              io.emit('newOrderMessage',messageUtils.generateOrderMessage(messageUtils.ADMIN_NAME ,JSON.parse(response).meta.total_count, JSON.parse(response).payload.orders[0]));
-            }else{
-              io.emit('newMessage',messageUtils.generateMessage(messageUtils.ADMIN_NAME ,`Currently you have no new orders`));
-            }
-            //TO get all orders
-            // for (var i = 0; i < JSON.parse(response).payload.orders.length; i++) {
-            //   io.emit('newOrderMessage',messageUtils.generateOrderMessage(messageUtils.ADMIN_NAME ,JSON.parse(response).meta.total_count, JSON.parse(response).payload.orders[i]));
-            // }
+      // request({
+      //     headers: {
+      //       'X-Auth-Token': `${CONSTANTS.AUTH_TOKEN}`,
+      //       json : true
+      //     },
+      //     uri: `${CONSTANTS.BASE_URL}requirements/app/buy_order/all/?status=open`,
+      //     method: 'GET'
+      //   }).then(function (response) {
+      //       // Request was successful, use the response object at wil;
+      //       var total = JSON.parse(response).meta.total_count;
+      //       if(JSON.parse(response).payload.orders.length > 0){
+      //         io.emit('newMessage',messageUtils.generateMessage(messageUtils.ADMIN_NAME ,`Showing your open orders`));
+      //         io.emit('newOrderMessage',messageUtils.generateOrderMessage(messageUtils.ADMIN_NAME ,JSON.parse(response).meta.total_count, JSON.parse(response).payload.orders[0]));
+      //       }else{
+      //         io.emit('newMessage',messageUtils.generateMessage(messageUtils.ADMIN_NAME ,`Currently you have no new orders`));
+      //       }
+      //       //TO get all orders
+      //       // for (var i = 0; i < JSON.parse(response).payload.orders.length; i++) {
+      //       //   io.emit('newOrderMessage',messageUtils.generateOrderMessage(messageUtils.ADMIN_NAME ,JSON.parse(response).meta.total_count, JSON.parse(response).payload.orders[i]));
+      //       // }
 
-        })
-        .catch(function (err) {
-            // Something bad happened, handle the error
-              console.log(err);
-        });
+      //   })
+      //   .catch(function (err) {
+      //       // Something bad happened, handle the error
+      //         console.log(err);
+      //   });
         break;
         case CONSTANTS.ACTION_ORDER_CLOSED:
-        request({
-            headers: {
-              'X-Auth-Token': `${CONSTANTS.AUTH_TOKEN}`,
-              json : true
-            },
-            uri: `${CONSTANTS.BASE_URL}requirements/app/buy_order/all/?status=closed`,
-            method: 'GET'
-          }).then(function (response) {
-              // Request was successful, use the response object at wil;
-              var total = JSON.parse(response).meta.total_count;
-              io.emit('newMessage',messageUtils.generateMessage(messageUtils.ADMIN_NAME ,`You had ${JSON.parse(response).payload.orders.length} past orders`));
-              for (var i = 0; i < JSON.parse(response).payload.orders.length; i++) {
-                io.emit('newOrderMessage',messageUtils.generateOrderMessage(messageUtils.ADMIN_NAME ,JSON.parse(response).meta.total_count, JSON.parse(response).payload.orders[i]));
-              }
+        // request({
+        //     headers: {
+        //       'X-Auth-Token': `${CONSTANTS.AUTH_TOKEN}`,
+        //       json : true
+        //     },
+        //     uri: `${CONSTANTS.BASE_URL}requirements/app/buy_order/all/?status=closed`,
+        //     method: 'GET'
+        //   }).then(function (response) {
+        //       // Request was successful, use the response object at wil;
+        //       var total = JSON.parse(response).meta.total_count;
+        //       io.emit('newMessage',messageUtils.generateMessage(messageUtils.ADMIN_NAME ,`You had ${JSON.parse(response).payload.orders.length} past orders`));
+        //       for (var i = 0; i < JSON.parse(response).payload.orders.length; i++) {
+        //         io.emit('newOrderMessage',messageUtils.generateOrderMessage(messageUtils.ADMIN_NAME ,JSON.parse(response).meta.total_count, JSON.parse(response).payload.orders[i]));
+        //       }
 
-          })
-          .catch(function (err) {
-              // Something bad happened, handle the error
-                console.log(err);
-          });
-          break;
+        //   })
+        //   .catch(function (err) {
+        //       // Something bad happened, handle the error
+        //         console.log(err);
+        //   });
+        //   break;
       default:
 
     }
